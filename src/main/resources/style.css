@@ -1,0 +1,18 @@
+@font-face {
+    font-family: 'Tangodoni';
+    src: url('Tangodoni.ttf');
+}
+
+
+.root {
+    -fx-background-image: url("http://mosura.pl/public/images/backgrounds/1640611.jpg");
+    -fx-background-size: cover;
+}
+
+
+
+.text-id {
+    -fx-fill: white;
+    -fx-font-family: "Tangodoni";
+    -fx-font-size: 15pt;
+}
