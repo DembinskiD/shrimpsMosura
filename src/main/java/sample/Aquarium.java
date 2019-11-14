@@ -39,12 +39,13 @@ public class Aquarium {
      * Sensors:
      * water - water temperature
      * box - temperature of box with electronics
-     * lightSwitch - turns off/on light inside aquarium
-     * hasLights -
+     * lightSwitch - setups state of light in aquarium
+     * hasLights - says if aquarium has lights or not
      */
     private float waterTemp;
     private float boxTemp;
-    private boolean lightSwitch;
+    private LightState lightSwitch;
+    private boolean hasLights;
 
 
 
@@ -54,7 +55,7 @@ public class Aquarium {
 
         try {
             String userName = "dawid";
-            String password = "dupa123";
+            String password = "";
             String sterownik = "com.mysql.jdbc.Driver";
             String url = "jdbc:mysql://mosura.pl:3306/mosurapl";
             Class.forName(sterownik); //register driver
