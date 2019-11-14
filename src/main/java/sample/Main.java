@@ -14,6 +14,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
+        Aquarium temp = new Aquarium();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/mosuraMain.fxml"));
         BorderPane root = loader.load();
         primaryStage.setTitle("Shrimps Mosura");
