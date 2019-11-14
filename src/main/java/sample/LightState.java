@@ -1,5 +1,5 @@
 package sample;
 
 public enum LightState {
-    DAWN, DAY, DUSK, NIGHT;
+    NONE, DAWN, DAY, DUSK, NIGHT;
 }

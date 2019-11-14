@@ -9,14 +9,12 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.image.Image?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.layout.StackPane?>
-<BorderPane fx:controller="sample.Controller"
-            xmlns:fx="http://javafx.com/fxml" fx:id="root">
+<BorderPane xmlns:fx="http://javafx.com/fxml">
     <padding>
         <Insets top="20" right="20" left="20" bottom="20"/>
     </padding>
@@ -29,22 +27,13 @@
         </HBox>
     </top>
     <center>
-        <HBox spacing="20" alignment="CENTER">
+        <HBox fx:id="centerBox" spacing="20" alignment="CENTER">
             <StackPane>
                 <Rectangle width="180" height="300" fill="black" opacity="0.5" stroke="wheat"/>
                 <VBox alignment="CENTER" spacing="20">
                     <Text text="Temperature sensors" styleClass="text-id"/>
                 </VBox>
             </StackPane>
-            <Region HBox.hgrow="ALWAYS"/>
-            <StackPane>
-                <Rectangle width="180" height="300" fill="black" opacity="0.5" stroke="wheat"/>
-            </StackPane>
-            <Region HBox.hgrow="ALWAYS"/>
-            <StackPane>
-                <Rectangle width="180" height="300" fill="black" opacity="0.5" stroke="wheat"/>
-            </StackPane>
-
         </HBox>
     </center>
 
