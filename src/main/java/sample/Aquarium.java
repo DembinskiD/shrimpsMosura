@@ -1,8 +1,12 @@
 package sample;
 
 
-import java.awt.*;
+import javafx.scene.layout.*;
+import javafx.scene.shape.*;
 import java.sql.*;
+
+import static javafx.scene.paint.Color.BLACK;
+import static javafx.scene.paint.Color.WHEAT;
 
 public class Aquarium {
     /**
@@ -57,6 +61,18 @@ public class Aquarium {
     private boolean filter;
     private boolean czwarty;
 
+
+    /**
+     * conn - Database connection, setup during constructor right now
+     */
+    Connection databaseConnection = null;
+
+
+    /**
+     * Graphical elements in here, stackpane with items inside, ex. background rectangle.
+     */
+    StackPane tempSensorPane;
+    Rectangle bgRectangle = new Rectangle();
     /**
      *
      * @param aquariumName name of aquarium that will be visible on app
@@ -77,20 +93,59 @@ public class Aquarium {
     public Aquarium() {
         this.aquariumName = "defaultAquariumName";
         this.ownerName = "defaultOwnerName";
+        String query = "SELECT VERSION();";
+        System.out.println(executeQuery(query));
 
     }
 
+    public void createTempSensor() {
+        tempSensorPane = new StackPane();
+        configBgRectangle(bgRectangle);
+    }
+
+    /**
+     * Method to configure rectangle that's bg for node in app
+     */
+    private void configBgRectangle(Rectangle bgRectangle) {
+        bgRectangle.setHeight(300);
+        bgRectangle.setWidth(180);
+        bgRectangle.setFill(BLACK);
+        bgRectangle.setOpacity(0.5);
+        bgRectangle.setStroke(WHEAT);
+
+    }
+    private String executeQuery(String query) {
+        connectToDB();
+        try(Statement statement = databaseConnection.createStatement();
+            ResultSet resultSet = statement.executeQuery(query))
+        {
+
+            if(resultSet.next()) {
+                return resultSet.getString(1);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                databaseConnection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return "!ERROR!";
+    }
+
+
     //test connection to DB here, if possible - fetch data from DB
     private void connectToDB() {
-        Connection conn = null;
-
         try {
-            String userName = "";
-            String password = "";
+            String userName = "dawid";
+            String password = "d@wid";
             String sterownik = "com.mysql.jdbc.Driver";
-            String url = "jdbc:mysql://mosura.pl:3306/mosurapl";
+            String url = "jdbc:mysql://mosura.pl:3306/shrimps";
             Class.forName(sterownik); //register driver
-            conn = DriverManager.getConnection(url, userName, password);
+            databaseConnection = DriverManager.getConnection(url, userName, password);
             System.out.println("Connection established.");
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
